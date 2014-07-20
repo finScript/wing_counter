@@ -57,7 +57,7 @@
 				New Session
 			</div>
 			
-			<form action="create.php" method="get">
+			<form action="confirm.php" method="get">
 			
 				<div class="u_options">
 					

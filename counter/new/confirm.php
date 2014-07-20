@@ -1,4 +1,5 @@
 <?php include('../../info.php'); session_start(); ?>
+
 <?php
 	
 	if(!isset($_SESSION['user'], $_GET['eaters'], $_GET['session_name'])) die();
@@ -9,11 +10,42 @@
 	//print_r($eaters);
 	
 ?>
+
+<?php
 	
+	if(isset($_GET['confirmed'])) {
+		
+		$sessionkey = md5(time());
+		
+		for($i = 0; $i < count($eaters); $i++) {
+			
+			$rec = 0;
+			$res = $db->query("SELECT * FROM users WHERE uid = '" . $eaters[$i] . "'");
+			if($res->num_rows)
+				$rec = $res->fetch_object()->wing_record;
+			else
+				$rec = 0;
+			
+			$sql = "INSERT INTO eaters(uid, wing_eaten, wing_record, sessionkey) VALUES ('" . $eaters[$i] . "', 0, $rec, '$sessionkey')";
+			$db->query($sql);
+			
+		}
+		
+		$sql = "INSERT INTO sessions(name, sessionkey) VALUES ('" . $_GET['name'] . "', '$sessionkey')";
+		$db->query($sql);
+		
+		header("location: ../?key=" . $sessionkey);
+		die();
+		
+	}
+	
+?>
+
 <html>
 	
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" src="confirm.js"></script>
 	</head>
 	<body>
 		
@@ -91,13 +123,19 @@
 			}
 			
 		?>
-		
+		<form action="confirm.php" method="get">
 		<div class="u_options">
 			
-			<input type="submit" onclick="event.preventDefault();startSession();" value="Confirm and Start" />
+			
+				<input type="hidden" name="confirmed" value="yes" />
+				<input type="hidden" name="session_name" value="<?php echo $_GET['session_name']; ?>" />
+				<input type="hidden" name="eaters" value="<?php echo $_GET['eaters']; ?>" />
+				<input type="submit" value="Confirm and Start" />
+				<input type="submit" onclick="event.preventDefault();cancelSession();" value="Cancel" style="margin-top: 30px;" />
+			
 			
 		</div>
-		
+		</form>
 	</body>
 	
 </html>

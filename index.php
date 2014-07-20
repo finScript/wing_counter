@@ -67,6 +67,10 @@
 						<a href="counter/continue" id="a2">Continue Existing Session</a>
 					</div>
 					
+					<div class="u_options" onclick="window.location = 'statistics'" onmouseover="setColor('a3', 'darkorange');" onmouseout="setColor('a3', 'white');">
+						<a href="statistics" id="a3">My Statistics</a>
+					</div>
+					
 					<?php
 					
 				} else {

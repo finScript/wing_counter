@@ -37,7 +37,6 @@ body {
 
 .u_options {
 	
-	border: 1px solid black;
 	height: relative;
 	font-size: 50px;
 	padding: 20px;
@@ -49,6 +48,22 @@ body {
 	background-color: grey;
 	
 	color: white;
+	
+}
+
+.u_options_warning {
+	
+	height: relative;
+	font-size: 50px;
+	padding: 20px;
+	text-align: center;
+	
+	border: 3px solid FF9900;
+	margin: 10px;
+	
+	background-color: yellow;
+	
+	color: #FF9900;
 	
 }
 
