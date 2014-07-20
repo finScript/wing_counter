@@ -42,7 +42,7 @@
 						Logged in as <b><?php echo $user; ?></b>
 						<div style="float: right;">
 							<a href="my">My Settings</a>
-							<a href="logout">Log Out</a>
+							<a href="../../logout">Log Out</a>
 						</div>
 						
 						<?php
@@ -54,7 +54,7 @@
 			</div>
 			
 			<div id="header">
-				New
+				New Session
 			</div>
 			
 			<form action="create.php" method="get">
@@ -65,6 +65,15 @@
 						Eaters:
 					</label>
 					<input type="text" name="eaters" id="eaters" style="" />
+					
+				</div>
+				
+				<div class="u_options">
+					
+					<label for="session_name">
+						Name:
+					</label>
+					<input type="text" name="session_name" id="session_name" style="" />
 					
 				</div>
 				
